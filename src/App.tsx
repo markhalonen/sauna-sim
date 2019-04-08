@@ -33,19 +33,26 @@ class App extends React.Component {
           This is an interative sauna simulation app. Use at your own rdisk.
         </p>
         <button disabled={this.state.simulationRunning} onClick={this.runSimulationClicked}>Run Simulation</button>
-        <Plot
-          data={[
-            {
+        <div>
+          <Plot
+            data={[
+              {
 
-              marker: { color: 'red' },
-              mode: 'lines+points' as any,
-              type: 'scatter' as any,
-              x: this.state.result.time,
-              y: this.state.result.human_exper_temperature,
-            },
-          ]}
-          layout={{ width: 500, height: 400, title: 'A Fancy Plot' }}
-        />
+                marker: { color: 'red' },
+                mode: 'lines+points' as any,
+                type: 'scatter' as any,
+                x: this.state.result.time,
+                y: this.state.result.human_exper_temperature,
+              },
+            ]}
+            layout={{
+              title: 'Experienced Temperature Vs Time',
+              xaxis: { title: "Time (seconds)" },
+              yaxis: { title: "Experienced Temperature" },
+              width: 700, height: 500,
+            }}
+          />
+        </div>
       </div>
     );
   }
