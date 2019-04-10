@@ -59,7 +59,7 @@ class App extends React.Component {
 
   private runSimulationClicked = async () => {
     this.setState({ simulationRunning: true })
-    const result = await fetch('https://54.89.198.175').then((response) => {
+    const result = await fetch('http://54.89.198.175').then((response) => {
       return response.json();
     })
       .then((myJson) => {
