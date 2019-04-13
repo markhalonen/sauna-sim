@@ -55,6 +55,4 @@ r = Joseki.router(endpoints)
 haskey(ENV, "PORT") ? port = parse(Int32, ENV["PORT"]) : port = 8000
 # Fire up the server, binding to all ips
 
-Base.@ccallable function julia_main(ARGS::Vector{String})::Cint
-    HTTP.serve(r, "0.0.0.0", port; verbose=false)
-end
+HTTP.serve(r, "0.0.0.0", port; verbose=false)
