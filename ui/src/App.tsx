@@ -17,6 +17,8 @@ interface IState {
   params: any
 }
 
+const apiUrl = "https://feteo.serveo.net"
+
 class App extends React.Component {
   public readonly state: IState = {
     result: { relative_humidity: [], time: [], watt_into_human: [], human_exper_temperature: [] },
@@ -26,7 +28,7 @@ class App extends React.Component {
 
   public async componentDidMount() {
     // Get simulation params
-    const params = await fetch('http://localhost:8000/params').then((response) => {
+    const params = await fetch(`${apiUrl}/params`).then((response) => {
       return response.json();
     })
       .then((myJson) => {
@@ -140,7 +142,7 @@ class App extends React.Component {
 
     const urlParams = this.paramsToUrl()
 
-    const result = await fetch(`http://localhost:8000/simulate?${urlParams}`).then((response) => {
+    const result = await fetch(`${apiUrl}/simulate?${urlParams}`).then((response) => {
       return response.json();
     })
       .then((myJson) => {
