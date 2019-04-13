@@ -22,7 +22,16 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.Params {
+  text-align: left;
+  padding-left:40px;
+}
+
+.Param {
+  display: inline;
+  margin-right: 5px;
+}
+
+.ParamRow {
+  margin-bottom: 5px;
 }
