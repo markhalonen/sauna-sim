@@ -101,25 +101,46 @@ class App extends React.Component {
   }
 
   private paramsToUrl() {
-    // Basically takes JSON as input and converts it to dot notation so it can be sent in a 
-    // URL
-    // Input: {"a": {"b" : 1}, "c": 2}
-    // Output: a.b=1&c=2
+    const noUnits = this.stripUnits(this.state.params)
+    return this.toDotNotation(noUnits, [], []).join('&')
 
   }
 
-  // private stripUnits(ob: any) {
-  //   // Input {"a": {"val": 1, "unit": "Kg"}}
-  //   // Output {"a": 1}
+  private toDotNotation(ob: any, currentPath: string[], result: string[]) {
+    // Input: {"a": {"b" : 1}, "c": 2}
+    // Output: a.b=1&c=2
+    Object.keys(ob).forEach(k => {
+      const newPath = [...currentPath]
+      newPath.push(k)
+      if (isNaN(ob[k])) {
+        this.toDotNotation(ob[k], newPath, result)
+      } else {
+        result.push(newPath.join(".") + "=" + ob[k])
+      }
+    })
+    return result
+  }
 
-  // }
+  private stripUnits(ob: any) {
+    // Input {"a": {"val": 1, "unit": "Kg"}}
+    // Output {"a": 1}
+    const retval = {}
+    Object.keys(ob).forEach(k => {
+      if (this.isUnit(ob[k])) {
+        retval[k] = ob[k].val
+      } else {
+        retval[k] = this.stripUnits(ob[k])
+      }
+    })
+    return retval
+  }
 
   private runSimulationClicked = async () => {
     this.setState({ simulationRunning: true })
 
     const urlParams = this.paramsToUrl()
 
-    const result = await fetch(`https://localhost:8000/simulate?${urlParams}`).then((response) => {
+    const result = await fetch(`http://localhost:8000/simulate?${urlParams}`).then((response) => {
       return response.json();
     })
       .then((myJson) => {
@@ -149,9 +170,6 @@ class App extends React.Component {
   }
 
   private getParams(params: any, padding: number, path: string[]) {
-    const isSetsEqual = (a: any, b: any) => {
-      return a.size === b.size && Array.from(a).every(value => b.has(value));
-    }
     return <div>
       {path.length ? <h4 style={{ paddingLeft: padding }}>{path[path.length - 1]}</h4> : <p />}
       {Object.keys(params)
@@ -166,12 +184,10 @@ class App extends React.Component {
           }
         })
         .map(k => {
-          const set1 = new Set(Object.keys(params[k]))
-          const set2 = new Set(["val", "unit"])
           const newPath = [...path]
           newPath.push(k)
           const onChange = (event: any) => this.paramChanged(event, newPath)
-          if (isSetsEqual(set1, set2)) {
+          if (this.isUnit(params[k])) {
             return <div className="ParamRow">
               <p style={{ paddingLeft: padding + 5 }} className="Param">{k}</p>
               <input type="text" value={params[k].val} className="Param" onChange={onChange} />
