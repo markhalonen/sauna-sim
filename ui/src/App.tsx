@@ -63,13 +63,13 @@ class App extends React.Component {
                 marker: { color: 'red' },
                 mode: 'lines+points' as any,
                 type: 'scatter' as any,
-                x: this.state.result.time,
+                x: this.state.result.time.map(t => t / 60),
                 y: this.state.result.human_exper_temperature,
               },
             ]}
             layout={{
               title: 'Experienced Temperature Vs Time',
-              xaxis: { title: "Time (seconds)" },
+              xaxis: { title: "Time (minutes)" },
               yaxis: { title: "Experienced Temperature" },
               width,
               height
@@ -85,13 +85,13 @@ class App extends React.Component {
                 marker: { color: 'red' },
                 mode: 'lines+points' as any,
                 type: 'scatter' as any,
-                x: this.state.result.time,
+                x: this.state.result.time.map(t => t / 60),
                 y: this.state.result.watt_into_human,
               },
             ]}
             layout={{
               title: 'Experienced Energy Vs Time',
-              xaxis: { title: "Time (seconds)" },
+              xaxis: { title: "Time (minutes)" },
               yaxis: { title: "Experienced Energy" },
               width,
               height
