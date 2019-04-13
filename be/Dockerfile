@@ -9,4 +9,9 @@ RUN julia -e 'using Pkg; Pkg.add(Pkg.PackageSpec(url="https://github.com/amellni
 RUN julia -e 'using Pkg; Pkg.add("JSON")'
 RUN julia -e 'using Pkg; Pkg.add("HTTP")'
 
-CMD export JULIA_DEPOT_PATH="/root/.julia/" && julia -e 'include("src/server.jl")'
+RUN apt-get update; apt-get install -y build-essential make gcc
+RUN julia -e 'using Pkg; Pkg.add("PackageCompiler")'
+RUN julia -e 'using SaunaModel;'
+RUN julia -e 'using PackageCompiler; PackageCompiler.build_executable("src/server.jl", "server")'
+
+CMD ./builddir/server
