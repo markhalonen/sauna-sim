@@ -17,7 +17,7 @@ interface IState {
   params: any
 }
 
-const apiUrl = "https://feteo.serveo.net"
+const apiUrl = "https://api.saunasim.com"
 
 class App extends React.Component {
   public readonly state: IState = {
