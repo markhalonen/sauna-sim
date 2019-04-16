@@ -4,7 +4,7 @@
 
 .App-header {
   background-color: rgb(136, 70, 7);
-  height: 60px;
+  height: 70px;
   padding: 20px;
   color: white;
 }
@@ -23,10 +23,17 @@
 }
 
 .Param {
-  display: inline;
   margin-right: 5px;
+  padding-right: 5px;
+  margin-bottom: 5px;
+  display: table-cell;
 }
 
 .ParamRow {
-  margin-bottom: 5px;
+  display: table-row;
+
+}
+
+.ParamsContainer {
+  display: table;
 }
