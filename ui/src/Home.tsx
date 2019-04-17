@@ -5,7 +5,7 @@ import './App.css';
 import { withStyles } from '@material-ui/core/styles';
 import Plot from 'react-plotly.js';
 import Button from '@material-ui/core/Button';
-import { ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails } from '@material-ui/core';
+import { ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails, Divider } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 
@@ -106,6 +106,7 @@ class Home extends React.Component {
                         }}
                     />
                 </div>
+                <Divider variant="middle" />
                 <div>
                     <Plot
                         data={[
@@ -128,6 +129,7 @@ class Home extends React.Component {
                         }}
                     />
                 </div>
+                <Divider variant="middle" />
                 <div>
                     <Plot
                         data={[
@@ -150,6 +152,7 @@ class Home extends React.Component {
                         }}
                     />
                 </div>
+                <Divider variant="middle" />
                 <div>
                     <Plot
                         data={[

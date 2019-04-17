@@ -5,6 +5,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from './Home'
 import About from './About'
+import { Typography } from '@material-ui/core';
 
 class App extends React.Component {
 
@@ -13,7 +14,7 @@ class App extends React.Component {
       <Router >
         <div className="App">
           <header className="App-header">
-            <h1 className="App-title">Sauna And Sim</h1>
+            <Typography variant="h4" style={{ color: "white", paddingBottom: 10 }}>Sauna And Sim</Typography>
             <Link to="/" style={{ paddingRight: 15, color: "white" }}>Home</Link><Link to="/about" style={{ color: "white" }}>About</Link>
           </header>
         </div>
