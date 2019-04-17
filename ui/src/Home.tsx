@@ -55,6 +55,7 @@ class Home extends React.Component {
             .then((myJson) => {
                 return myJson
             });
+        this.paramsToSigFigs(params, 5)
         this.setState({ params })
     }
 
@@ -277,6 +278,16 @@ class Home extends React.Component {
                     }
                 })}
         </React.Fragment>
+    }
+
+    private paramsToSigFigs(params: any, sigFigs: number) {
+        Object.keys(params).forEach(k => {
+            if (this.isUnit(params[k])) {
+                params[k].val = Number(Number(params[k].val).toPrecision(sigFigs)).toString()
+            } else {
+                this.paramsToSigFigs(params[k], sigFigs)
+            }
+        })
     }
 }
 
