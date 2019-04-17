@@ -9,11 +9,17 @@ import { ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetail
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 
+interface IBodyResult {
+    time: number[];
+    temperature: number[];
+}
+
 interface ISimulationResult {
     relative_humidity: number[];
     time: number[];
     watt_into_human: number[];
-    human_exper_temperature: number[]
+    human_exper_temperature: number[];
+    body: IBodyResult;
 }
 
 interface IState {
@@ -36,7 +42,7 @@ const styles = (theme: Theme) => ({
 
 class Home extends React.Component {
     public readonly state: IState = {
-        result: { relative_humidity: [], time: [], watt_into_human: [], human_exper_temperature: [] },
+        result: { relative_humidity: [], time: [], watt_into_human: [], human_exper_temperature: [], body: { time: [], temperature: [] } },
         simulationRunning: false,
         params: {}
     }
@@ -109,6 +115,28 @@ class Home extends React.Component {
                                 mode: 'lines+points' as any,
                                 type: 'scatter' as any,
                                 x: this.state.result.time.map(t => t / 60),
+                                y: this.state.result.relative_humidity,
+                            },
+                        ]}
+                        layout={{
+                            title: 'Relative Humidity Vs Time',
+                            xaxis: { title: "Time (minutes)" },
+                            yaxis: { title: "Humidity" },
+                            width,
+                            height,
+                            plot_bgcolor: "#F8F8F8"
+                        }}
+                    />
+                </div>
+                <div>
+                    <Plot
+                        data={[
+                            {
+
+                                marker: { color: 'red' },
+                                mode: 'lines+points' as any,
+                                type: 'scatter' as any,
+                                x: this.state.result.time.map(t => t / 60),
                                 y: this.state.result.watt_into_human,
                             },
                         ]}
@@ -116,6 +144,28 @@ class Home extends React.Component {
                             title: 'Experienced Energy Vs Time',
                             xaxis: { title: "Time (minutes)" },
                             yaxis: { title: "Experienced Energy" },
+                            width,
+                            height,
+                            plot_bgcolor: "#F8F8F8"
+                        }}
+                    />
+                </div>
+                <div>
+                    <Plot
+                        data={[
+                            {
+
+                                marker: { color: 'red' },
+                                mode: 'lines+points' as any,
+                                type: 'scatter' as any,
+                                x: this.state.result.body.time.map(t => t / 60),
+                                y: this.state.result.body.temperature,
+                            },
+                        ]}
+                        layout={{
+                            title: 'Body Temperature Vs Time',
+                            xaxis: { title: "Time (minutes)" },
+                            yaxis: { title: "Body Temperature" },
                             width,
                             height,
                             plot_bgcolor: "#F8F8F8"
