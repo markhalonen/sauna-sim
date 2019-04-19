@@ -198,7 +198,18 @@ class Home extends React.Component {
             if (isNaN(ob[k])) {
                 this.toDotNotation(ob[k], newPath, result)
             } else {
-                result.push(newPath.join(".") + "=" + ob[k])
+                const dotPath = newPath.join(".")
+                if (dotPath === "start_time") {
+                    if (ob[k] < 0) {
+                        ob[k] = 0
+                    }
+                }
+                if (dotPath === "end_time") {
+                    if (ob[k] > 4) {
+                        ob[k] = 4
+                    }
+                }
+                result.push(dotPath + "=" + ob[k])
             }
         })
         return result
