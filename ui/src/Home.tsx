@@ -25,7 +25,8 @@ interface ISimulationResult {
 interface IState {
     simulationRunning: boolean,
     result: ISimulationResult,
-    params: any
+    params: any,
+    error: boolean
 }
 
 const apiUrl = "https://api.saunasim.com"
@@ -44,7 +45,8 @@ class Home extends React.Component {
     public readonly state: IState = {
         result: { relative_humidity: [], time: [], watt_into_human: [], human_exper_temperature: [], body: { time: [], temperature: [] } },
         simulationRunning: false,
-        params: {}
+        params: {},
+        error: false
     }
 
     public async componentDidMount() {
@@ -72,7 +74,7 @@ class Home extends React.Component {
 
                 <ExpansionPanel>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography variant="title">Scenario Settings</Typography>
+                        <Typography variant="title">Parameters</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className="Params">
@@ -84,6 +86,7 @@ class Home extends React.Component {
                 </ExpansionPanel>
 
                 <Button variant="contained" disabled={this.state.simulationRunning} onClick={this.runSimulationClicked} style={{ margin: 15 }}>Run Simulation</Button>
+                {this.state.error && <Typography style={{ color: "red" }}>Sorry, the model cannot converge on a solution with these parameters</Typography>}
                 <div>
                     <Plot
                         data={[
@@ -121,9 +124,9 @@ class Home extends React.Component {
                             },
                         ]}
                         layout={{
-                            title: 'Relative Humidity Vs Time',
+                            title: 'Room Water Vapor Proportion vs Time',
                             xaxis: { title: "Time (minutes)" },
-                            yaxis: { title: "Humidity" },
+                            yaxis: { title: "Water Vapor Proportion" },
                             width,
                             height,
                             plot_bgcolor: "#F8F8F8"
@@ -144,9 +147,9 @@ class Home extends React.Component {
                             },
                         ]}
                         layout={{
-                            title: 'Experienced Energy Vs Time',
+                            title: 'Experienced Power Vs Time',
                             xaxis: { title: "Time (minutes)" },
-                            yaxis: { title: "Experienced Energy" },
+                            yaxis: { title: "Experienced Power" },
                             width,
                             height,
                             plot_bgcolor: "#F8F8F8"
@@ -226,7 +229,12 @@ class Home extends React.Component {
             .then((myJson) => {
                 return myJson
             });
-        this.setState({ result })
+        if (result.error) {
+            this.setState({ error: true })
+        } else {
+
+            this.setState({ result, error: false })
+        }
         this.setState({ simulationRunning: false })
     }
 

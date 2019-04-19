@@ -27,7 +27,10 @@ class About extends React.Component {
 
                 </div>
                 <Typography variant="title" style={{ paddingTop: 30, paddingBottom: 5 }}>How a wood sauna works</Typography>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/fzaNYXj-7uQ" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} />
+                <iframe style={{ marginLeft: 10 }} width="560" height="315" src="https://www.youtube.com/embed/fzaNYXj-7uQ" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} />
+                <Typography variant="title" style={{ paddingTop: 30, paddingBottom: 5 }}>IR video of throwing steam</Typography>
+
+                <iframe style={{ marginLeft: 10 }} width="560" height="315" src="https://www.youtube.com/embed/fQZfXllGo0s" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} />
             </div>
         )
     }
