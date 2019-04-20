@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import { ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails, Divider } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import { event as googleAnalyticsEvent } from "react-ga"
 
 interface IBodyResult {
     time: number[];
@@ -240,8 +241,10 @@ class Home extends React.Component {
             .then((myJson) => {
                 return myJson
             });
+        googleAnalyticsEvent({ category: 'User', action: 'Ran a simulation' })
         if (result.error) {
             this.setState({ error: true })
+            googleAnalyticsEvent({ category: 'User', action: 'Got a simulation error' })
         } else {
 
             this.setState({ result, error: false })
@@ -269,7 +272,7 @@ class Home extends React.Component {
     }
 
     private getParams(params: any, padding: number, path: string[]) {
-        return <React.Fragment>
+        return <React.Fragment key={path.join(".")}>
             {path.length > 0 && <h4 style={{ paddingLeft: padding }}>{path[path.length - 1]}</h4>}
             {Object.keys(params)
                 .filter(k => Object.keys(params[k]).length > 0)
@@ -287,7 +290,7 @@ class Home extends React.Component {
                     newPath.push(k)
                     const onChange = (event: any) => this.paramChanged(event, newPath)
                     if (this.isUnit(params[k])) {
-                        return <div className="ParamRow">
+                        return <div className="ParamRow" key={newPath.join(".")}>
                             <p style={{ paddingLeft: padding + 5 }} className="Param">{k}</p>
                             <input type="text" value={params[k].val} className="Param" onChange={onChange} />
                             <p className="Param">{params[k].unit}</p>
