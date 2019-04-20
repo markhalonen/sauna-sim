@@ -69,7 +69,7 @@ class Home extends React.Component {
         return (
             <div className="App">
                 <Typography variant="h6" style={{ padding: 15 }}>
-                    This is an interactive sauna simulation app. Use at your own rdisk.
+                    This is an interactive sauna simulation app. Use at your own risk.
         </Typography>
 
                 <ExpansionPanel>
