@@ -16,21 +16,32 @@ class About extends React.Component {
                         target="_blank"
                     >
                         SaunaModel.jl
-                </Link>) in Julia, a programming language that aims to be "A fresh approach to technical computing".
+
+                </Link>) in Julia, a programming language that aims to be "A fresh approach to technical computing". Brent also wrote up a <Link
+                            href={"https://bhalonen.github.io/SaunaModel.jl/"}
+                            target="_blank"
+                        >
+                            documentation page
+                </Link> detailing the thermodynamics and physics involved in the making of this simulator.
                     </Typography>
                     <Typography><strong>Mark Halonen</strong> created this website (<Link
                         href={"https://github.com/markhalonen/sauna-sim"}
                         target="_blank"
                     >
                         sauna-sim
-                </Link>) using Julia for the server and React for the UI. </Typography>
+                </Link>) using Julia for the server and React for the UI. He wrote about his experience in deploying Julia in <Link
+                            href={"https://medium.com/@markhalonen/deploying-julia-1eb8a1686ca1"}
+                            target="_blank"
+                        >this blog post.</Link></Typography>
+
+
 
                 </div>
                 <Typography variant="title" style={{ paddingTop: 30, paddingBottom: 5 }}>How a wood sauna works</Typography>
                 <iframe style={{ marginLeft: 10 }} width="560" height="315" src="https://www.youtube.com/embed/fzaNYXj-7uQ" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} />
                 <Typography variant="title" style={{ paddingTop: 30, paddingBottom: 5 }}>IR video of throwing steam</Typography>
 
-                <iframe style={{ marginLeft: 10 }} width="560" height="315" src="https://www.youtube.com/embed/fQZfXllGo0s" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} />
+                <iframe style={{ marginLeft: 10 }} width="560" height="315" src="https://www.youtube.com/embed/wXhTnEXXBEs" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} />
             </div>
         )
     }

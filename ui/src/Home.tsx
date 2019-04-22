@@ -5,7 +5,7 @@ import './App.css';
 import { withStyles } from '@material-ui/core/styles';
 import Plot from 'react-plotly.js';
 import Button from '@material-ui/core/Button';
-import { ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails, Divider } from '@material-ui/core';
+import { ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails, Divider, Link } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import { event as googleAnalyticsEvent } from "react-ga"
@@ -82,6 +82,12 @@ class Home extends React.Component {
                             <div className="ParamsContainer">
                                 {paramsComponents}
                             </div>
+                            <Typography style={{ paddingTop: 15 }}>These parameters are programmatically generated from <Link
+                                href={"https://github.com/bhalonen/SaunaModel.jl/blob/master/src/api/default_components.jl"}
+                                target="_blank"
+                            >
+                                SaunaModel.jl
+                </Link>. That's pretty neat. </Typography>
                         </div >
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
