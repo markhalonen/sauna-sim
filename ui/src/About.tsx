@@ -6,6 +6,8 @@ import { Typography, Link } from '@material-ui/core';
 class About extends React.Component {
 
     public render() {
+        let vidWidth = window.innerWidth - 50
+        vidWidth = vidWidth > 560 ? 560 : vidWidth;
         return (
             <div style={{ padding: 25 }}>
                 <Typography>SaunaSim originated when Mark commissioned the construction of a trailer sauna. Mark asked a group chat about the thermodynamics of a water tank, and the resulting discussion evolved into SaunaSim.</Typography>
@@ -38,10 +40,10 @@ class About extends React.Component {
 
                 </div>
                 <Typography variant="title" style={{ paddingTop: 30, paddingBottom: 5 }}>How a wood sauna works</Typography>
-                <iframe style={{ marginLeft: 10 }} width="560" height="315" src="https://www.youtube.com/embed/fzaNYXj-7uQ" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} />
+                <iframe style={{ marginLeft: 10 }} width={vidWidth} height="315" src="https://www.youtube.com/embed/fzaNYXj-7uQ" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} />
                 <Typography variant="title" style={{ paddingTop: 30, paddingBottom: 5 }}>IR video of throwing steam</Typography>
 
-                <iframe style={{ marginLeft: 10 }} width="560" height="315" src="https://www.youtube.com/embed/wXhTnEXXBEs" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} />
+                <iframe style={{ marginLeft: 10 }} width={vidWidth} height="315" src="https://www.youtube.com/embed/wXhTnEXXBEs" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} />
             </div>
         )
     }
