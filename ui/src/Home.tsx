@@ -63,7 +63,7 @@ class Home extends React.Component {
     }
 
     public render() {
-        let width = window.innerWidth * .8
+        let width = window.innerWidth
         width = width > 700 ? 700 : width
         const height = width * .6
         const paramsComponents = this.getParams(this.state.params, 0, [])
