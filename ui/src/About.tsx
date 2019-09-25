@@ -14,13 +14,13 @@ class About extends React.Component {
                 <Typography variant="title" style={{ paddingTop: 10, paddingBottom: 5 }}>Creators</Typography>
                 <div style={{ paddingLeft: 10 }}>
                     <Typography><strong>Brent Halonen</strong> created the simulator (<Link
-                        href={"https://github.com/bhalonen/SaunaModel.jl"}
+                        href={"https://github.com/laurium-labs/SaunaModel.jl"}
                         target="_blank"
                     >
                         SaunaModel.jl
 
                 </Link>) in Julia, a programming language that aims to be "A fresh approach to technical computing". Brent also wrote up a <Link
-                            href={"https://bhalonen.github.io/SaunaModel.jl/"}
+                            href={"https://laurium-labs.github.io/SaunaModel.jl/"}
                             target="_blank"
                         >
                             documentation page
